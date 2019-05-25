@@ -1,0 +1,23 @@
+#change_username
+{
+    display: inline;
+    float: right;
+    margin: 50px 10px 0 0;
+}
+
+#heading
+{
+    font-size: 80px;
+    font-family: sans-serif;
+}
+
+#input_zone{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+}
+
+#chatroom{
+    text-align: center;
+}
