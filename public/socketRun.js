@@ -1,5 +1,5 @@
 $(function () {
-    var socket = io.connect('http://localhost:3000')
+    var socket = io.connect('https://betchat-velunmxwgs.now.sh')
     var message = $("#message")
     var username = $("#username")
     var sendMessage = $("#send_message")
