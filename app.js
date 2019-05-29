@@ -1,39 +1,36 @@
 const express=require('express')
 const app=express();
-const port=3000
+const port=5000
 
-//template
-app.set('view engine','ejs')
+//app.use('/favicon.ico', express.static('images/favicon.ico'));
 
-//middleware
-app.use(express.static('public'))
-
-app.use('/favicon.ico', express.static('images/favicon.ico'));
-
-//routes
 app.get('/',(req,res)=>{
-    res.render("index")
+    res.send("The server is running")
 })
 
-app.get('/ico',(req,res)=>{
-  res.sendFile('/views/favicon.ico')  
-})
-
-//Port init
 server=app.listen(port,(res)=>{
     console.log("App is running on port : "+ port)
 })
 
 const io=require("socket.io")(server)
 
-//socket hookup on connect
 io.on('connection',(socket)=>{
     socket.username="ANON"
+    console.log('Requesting Connection..')
     socket.on('change_username',(obj)=>{
         socket.username=obj.username
     })
+    var testvalue=2000
+    socket.on('testConnection',(data)=>{
+        console.log("connection has been estabilished",data)
+        socket.emit("res",testvalue)
+    })
 
     socket.on("new_message", (data)=>{
-        io.sockets.emit('new_message',{message:data.message,username:socket.username})
+        console.log('new message recieved')
+        io.sockets.emit('new_message',{
+            message:data.message,
+            username:socket.username
+        })
     })
 })
