@@ -5,8 +5,8 @@ import FormControl from 'react-bootstrap/FormControl'
 export class Compose extends Component {
     render() {
         return (
-            <div className="justify-content-center">
-                <InputGroup className="mb-3 col-6 justify-content-center">
+            <div className="compose_box">
+                <InputGroup className="mb-3  justify-content-center">
                     <FormControl 
                         placeholder="Enter your message"
                         aria-label="Recipient's username"

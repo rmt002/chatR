@@ -1,13 +1,14 @@
 import React, {Component} from '../../node_modules/react'
 import {Header} from './header'
 import ChatBox from './chatBox';
-import Message from './message';
 import Compose from './compose';
+import {socketConfig} from '../services/api'
 
 export class Main extends Component{
     constructor(){
         super();
         this.changeUserName=this.changeUserName.bind(this)
+        socketConfig(' ');
     }
     
     state={
@@ -23,7 +24,6 @@ export class Main extends Component{
             <div>
                 <Header user={this.state.userName} changeUserName={this.changeUserName}/>
                 <ChatBox/>
-                <Message/>
                 <Compose/>
             </div>
         );
