@@ -3,14 +3,13 @@ import Nav from '../../node_modules/react-bootstrap/Nav'
 
 export class Header extends Component {
     constructor(props){
-        super(props);
-        this.handleChange=this.handleChange.bind(this)
+        super();
     }
 
     state={
         editMode:-1
     }
-    handleChange(event){
+    handleChange=(event)=>{
         this.props.changeUserName(event.target.value)
     }
     render() {

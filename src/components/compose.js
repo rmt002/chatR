@@ -3,6 +3,19 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
 export class Compose extends Component {
+    constructor(props){
+        super();
+    }
+
+    newMessage=(event)=>{
+        var newMessage=document.getElementById('composer').value;
+        document.getElementById('composer').value="";
+        var messageObject={
+            name:this.props.user,
+            message:newMessage
+        }
+        console.log(messageObject)
+    }
     render() {
         return (
             <div className="compose_box">
@@ -11,9 +24,10 @@ export class Compose extends Component {
                         placeholder="Enter your message"
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
+                        id="composer"
                     />
                     <InputGroup.Append>
-                        <button className="btn btn-primary">Send Message</button>
+                        <button className="btn btn-primary" type="submit" onClick={this.newMessage}>Send Message</button>
                     </InputGroup.Append>
                 </InputGroup>
 

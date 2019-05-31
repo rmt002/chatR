@@ -7,7 +7,6 @@ import {socketConfig} from '../services/api'
 export class Main extends Component{
     constructor(){
         super();
-        this.changeUserName=this.changeUserName.bind(this)
         socketConfig(' ');
     }
     
@@ -15,7 +14,7 @@ export class Main extends Component{
         userName:'Anon'
     }
 
-    changeUserName(newUserName){
+    changeUserName=(newUserName)=>{
         this.setState({userName:newUserName})
     }
 
@@ -24,7 +23,7 @@ export class Main extends Component{
             <div>
                 <Header user={this.state.userName} changeUserName={this.changeUserName}/>
                 <ChatBox/>
-                <Compose/>
+                <Compose user={this.state.userName}/>
             </div>
         );
     }
