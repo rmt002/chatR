@@ -1,5 +1,7 @@
 import React, {Component} from '../../node_modules/react'
 import {Message} from './message';
+import openSocket from '../../node_modules/socket.io-client';
+import {url} from '../services/api';
 
 export class ChatBox extends Component{
     constructor(props){
@@ -9,17 +11,24 @@ export class ChatBox extends Component{
         totalMessages:1,
         ticker:1,
         messageData:[{
-            name:"anon",
-            message:"This is a test message"
+            name:"Roshan T",
+            message:"Welcome To The Chatroom"
         }]
     }
 
-    addNewMessage=()=>{
+    componentDidMount(){
+        const socket=openSocket(url)
+        socket.on('serverSend',(data)=>{
+            this.addNewMessage(data)
+        })
+    }
+
+    addNewMessage=(data)=>{
         let newmessage={
-            name:"New User",
-            message:"Incoming Message"
+            name:data['name'],
+            message:data['message']
         }
-        let newMessageData=[...this.state.messageData]
+        let newMessageData=this.state.messageData;
         newMessageData.push(newmessage)
         this.setState({
             totalMessages:(this.state.totalMessages)+1,
@@ -32,7 +41,6 @@ export class ChatBox extends Component{
         for (var i = 0; i < this.state.totalMessages; i++) {
             elements.push(<Message  value={this.state.messageData[i]} key={i}/>);
         }
-       // var elements=<div><Message/><Message/><Message/><Message/><Message/><Message/><Message/><Message/></div>
         return(
             <div className="chatbox row justify-content-center">
                 <div>

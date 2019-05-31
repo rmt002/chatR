@@ -6,7 +6,6 @@ export class Message extends Component {
         super()
     }
     render() {
-        console.log(this.props)
         return (
             <div className="message">
                 <Card>

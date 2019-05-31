@@ -1,15 +1,17 @@
 import openSocket from '../../node_modules/socket.io-client';
-const socket=openSocket('http://localhost:5000')
+export const url='https://betchat-xctsddsvit.now.sh';
+const socket=openSocket(url)
 
-export function socketConfig(data){
-    var req=1000;
-    socket.emit('testConnection',req,(data)=>{
-        console.log('client is connected')
-    })
+export class MessagingSocket{
+    listen=()=>{
+        socket.on('serverSend',(data)=>{
+        })
+    }
 
-    socket.on('res',(data)=>{
-        console.log('res',data)
-    })
+    transmit=(send)=>{    
+        socket.emit('clientSend',send,(data)=>{
+        })
+    }
 }
 
-export default socketConfig;
+export default MessagingSocket;

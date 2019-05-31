@@ -1,12 +1,12 @@
 import React, { Component } from '../../node_modules/react'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
+import {MessagingSocket} from '../services/api'
 
 export class Compose extends Component {
     constructor(props){
         super();
     }
-
     newMessage=(event)=>{
         var newMessage=document.getElementById('composer').value;
         document.getElementById('composer').value="";
@@ -14,7 +14,8 @@ export class Compose extends Component {
             name:this.props.user,
             message:newMessage
         }
-        console.log(messageObject)
+        var transmittor= new MessagingSocket();
+        transmittor.transmit(messageObject);
     }
     render() {
         return (
