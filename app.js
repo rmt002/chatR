@@ -20,6 +20,7 @@ io.on('connection',(socket)=>{
     })
 
     emittor=(data)=>{
-        socket.emit("serverSend",data)
+        socket.emit("serverSend",data) //emit to the client that sent the message
+        socket.broadcast.emit("serverSend",data) //emit to everyone other than that client
     }
 })
