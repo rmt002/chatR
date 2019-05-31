@@ -1,5 +1,5 @@
 import openSocket from '../../node_modules/socket.io-client';
-export const url='https://betchat-xctsddsvit.now.sh';
+export const url='https://betchat-ovvvixdtsw.now.sh';
 const socket=openSocket(url)
 
 export class MessagingSocket{
