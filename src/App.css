@@ -12,7 +12,8 @@
     position: fixed;
 }
 
-.chatbox{    
+.chatbox{
+    margin-bottom: 100px;
 }
 
 .message{

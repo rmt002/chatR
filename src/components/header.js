@@ -21,9 +21,9 @@ export class Header extends Component {
                         <Nav.Item className="col-4">
                             <Nav.Link>betChat</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item className="col-2">
-                            <Nav.Link> {this.props.user} <button className="btn btn-primary" onClick={()=>{this.setState({editMode:1})}}>Change User</button></Nav.Link>
-                        </Nav.Item>
+                        <div className="col-3">
+                            <button className="btn btn-primary" onClick={()=>{this.setState({editMode:1})}}>{this.props.user}   </button>
+                        </div>
                     </Nav>
                 </div>
             );
