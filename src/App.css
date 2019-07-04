@@ -19,3 +19,16 @@
 .message{
     margin: 10px 0px 10px 0px;
 }
+
+.anon{
+    text-align: right;
+    margin-right: 10px;
+}
+
+.disBlock{
+    display: inline-block;
+}
+
+.useredit{
+    width: 50% !important;
+}

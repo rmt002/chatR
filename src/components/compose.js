@@ -7,6 +7,7 @@ export class Compose extends Component {
     constructor(props){
         super();
     }
+
     newMessage=(event)=>{
         var newMessage=document.getElementById('composer').value;
         document.getElementById('composer').value="";
@@ -17,6 +18,15 @@ export class Compose extends Component {
         var transmittor= new MessagingSocket();
         transmittor.transmit(messageObject);
     }
+
+    enterPressed=(event)=>{
+        if(event['which']===13){
+            if(document.getElementById('composer').value!==""){
+                this.newMessage();
+            }
+        }
+    }
+
     render() {
         return (
             <div className="compose_box">
@@ -26,9 +36,13 @@ export class Compose extends Component {
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
                         id="composer"
+                        onKeyPress={this.enterPressed}
                     />
                     <InputGroup.Append>
-                        <button className="btn btn-primary" type="submit" onClick={this.newMessage}>Send Message</button>
+                        <button className="btn btn-primary" 
+                                type="submit" 
+                                onClick={this.newMessage}
+                                >Send Message</button>
                     </InputGroup.Append>
                 </InputGroup>
 

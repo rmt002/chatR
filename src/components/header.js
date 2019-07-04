@@ -9,18 +9,29 @@ export class Header extends Component {
     state={
         editMode:-1
     }
-    handleChange=(event)=>{
-        this.props.changeUserName(event.target.value)
+    
+    handleChange=()=>{
+        if(document.getElementById('username').value!==""){
+            this.props.changeUserName(document.getElementById('username').value)
+        }
+        this.setState({editMode:-1})
     }
+    
+    enterPressed=(event)=>{
+        if(event['which']===13 || event['keycode']===13){
+            this.handleChange();
+        }
+    }
+
     render() {
         if(this.state.editMode===-1){
             return (
                 <div>
                     <Nav className="row justify-content-between header">
                         <Nav.Item className="col-4">
-                            <Nav.Link>betChat</Nav.Link>
+                            <Nav.Link>ChatApp</Nav.Link>
                         </Nav.Item>
-                        <div className="col-3">
+                        <div className="col-2 anon">
                             <button className="btn btn-primary" onClick={()=>{this.setState({editMode:1})}}>{this.props.user}   </button>
                         </div>
                     </Nav>
@@ -29,21 +40,19 @@ export class Header extends Component {
         }
         if(this.state.editMode===1){
             return(
-                <div className="row justify-content-end editHeader">
-                    <Nav>
-                        <Nav.Item>
-                        <input className="form-control" placeholder="New username" onChange={this.handleChange}></input>
+                <div>
+                    <Nav className="row  header">
+                        <Nav.Item className="col-5">
+                            <Nav.Link>ChatApp</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item className="col-2">
-                        <button className="btn btn-primary" type="submit" onClick={()=>{this.setState({editMode:-1})}}>Save</button>
-
-                        </Nav.Item>
-                        
+                        <div className="form-inline justify-content-end  col-7">
+                            <input className="form-control useredit" id="username" placeholder="New username"  onKeyPress={this.enterPressed}></input>
+                            <button className="btn btn-primary anon " type="submit" onClick={this.handleChange}>Save</button>
+                        </div>
                     </Nav>
                 </div>
             );
         }
-        
     }
 }
 
